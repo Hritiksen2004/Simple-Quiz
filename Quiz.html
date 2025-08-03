@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Quiz</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: white;
+      }
+      h1{
+        text-align: center;
+        background-color: green;
+        color: white;
+      }
+      p {
+        color: red;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .question {
+        background: #8a7ff536;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px #140c16;
+      }
+      .question h3 {
+        margin-top: 0;
+      }
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: green;
+        color: white;
+        float: left;
+        margin-left: 290px;
+       
+      }
+      #again {
+        background-color: rgb(255, 0, 0);
+        color: white;
+        font-weight: bold;
+      }
+      #result {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple 10 Questions Quiz</h1>
+    <p>Note: Attempt all the question.<br />All Questions carry equal marks.</p>
+    <form id="quizForm">
+      <!-- Questions -->
+      <div class="question">
+        <h3>1. What is the capital of India?</h3>
+        <input type="radio" name="q1" value="a" /> Mumbai<br />
+        <input type="radio" name="q1" value="b" /> Delhi<br />
+        <input type="radio" name="q1" value="c" /> Kolkata<br />
+      </div>
+
+      <div class="question">
+        <h3>2. CSS stand for ?</h3>
+        <input type="radio" name="q2" value="a" /> Common style Sheet<br />
+        <input type="radio" name="q2" value="b" /> Cascading Style Sheet<br />
+        <input type="radio" name="q2" value="c" /> Creation styling Step<br />
+      </div>
+
+      <div class="question">
+        <h3>3. HTML stands for?</h3>
+        <input type="radio" name="q3" value="a" /> HighText Machine Language<br />
+        <input type="radio" name="q3" value="b" /> HyperText Markup Language<br />
+        <input type="radio" name="q3" value="c" /> Hyperloop Text Machine
+        Language<br />
+      </div>
+
+      <div class="question">
+        <h3>4. Which is the largest planet?</h3>
+        <input type="radio" name="q4" value="a" /> Earth<br />
+        <input type="radio" name="q4" value="b" /> Mars<br />
+        <input type="radio" name="q4" value="c" /> Jupiter<br />
+      </div>
+
+      <div class="question">
+        <h3>5. Who wrote 'Ramayana'?</h3>
+        <input type="radio" name="q5" value="a" /> Valmiki<br />
+        <input type="radio" name="q5" value="b" /> Tulsidas<br />
+        <input type="radio" name="q5" value="c" /> Kalidasa<br />
+      </div>
+
+      <div class="question">
+        <h3>6. Which language is used for styling web pages?</h3>
+        <input type="radio" name="q6" value="a" /> HTML<br />
+        <input type="radio" name="q6" value="b" /> CSS<br />
+        <input type="radio" name="q6" value="c" /> Python<br />
+      </div>
+
+      <div class="question">
+        <h3>7. What is the full form of CPU?</h3>
+        <input type="radio" name="q7" value="a" /> Central Processing Unit<br />
+        <input type="radio" name="q7" value="b" /> Computer Processing Unit<br />
+        <input type="radio" name="q7" value="c" /> Central Printing Unit<br />
+      </div>
+
+      <div class="question">
+        <h3>8. Which gas do plants absorb?</h3>
+        <input type="radio" name="q8" value="a" /> Oxygen<br />
+        <input type="radio" name="q8" value="b" /> Carbon Dioxide<br />
+        <input type="radio" name="q8" value="c" /> Hydrogen<br />
+      </div>
+
+      <div class="question">
+        <h3>9. Who invented the light bulb?</h3>
+        <input type="radio" name="q9" value="a" /> Newton<br />
+        <input type="radio" name="q9" value="b" /> Thomas Edison<br />
+        <input type="radio" name="q9" value="c" /> Einstein<br />
+      </div>
+
+      <div class="question">
+        <h3>10. Which is the national bird of India?</h3>
+        <input type="radio" name="q10" value="a" /> Peacock<br />
+        <input type="radio" name="q10" value="b" /> Parrot<br />
+        <input type="radio" name="q10" value="c" /> Sparrow<br />
+      </div>
+
+      <div id="result"></div>
+
+      <div class="button">
+        <button type="button" onclick="checkAnswers()">Submit</button>
+        <button type="button" onclick="reattempt()" id="again">Restart</button>
+      </div>
+
+    </form>
+
+    <script>
+      function checkAnswers() {
+        const answers = {
+          q1: "b",
+          q2: "b",
+          q3: "b",
+          q4: "c",
+          q5: "a",
+          q6: "b",
+          q7: "a",
+          q8: "b",
+          q9: "b",
+          q10: "a",
+        };
+
+        let score = 0;
+        for (let i = 1; i <= 10; i++) {
+          const question = document.querySelector(
+            `input[name="q${i}"]:checked`
+          );
+          if (question && question.value === answers[`q${i}`]) {
+            score++;
+          }
+        }
+        if (score >= 5) {
+          document.getElementById(
+            "result"
+          ).innerText = `Hey😀😯! You Scored: ${score}/10`;
+        } else {
+          document.getElementById(
+            "result"
+          ).innerText = `Oops🥺! You Scored: ${score}/10`;
+        }
+      }
+      function reattempt() {
+        document.getElementById("again").innerHTML = "Not working...🥺";
+      }
+    </script>
+  </body>
+</html>
